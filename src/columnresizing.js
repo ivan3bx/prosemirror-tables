@@ -101,7 +101,9 @@ function handleMouseMove(
       cell = -1;
     if (target) {
       let { left, right } = target.getBoundingClientRect();
-      if (event.clientX - left <= handleWidth)
+      if (event.clientX < left)
+        cell = edgeCell(view, event, 'right');
+      else if (event.clientX - left <= handleWidth)
         cell = edgeCell(view, event, 'left');
       else if (right - event.clientX <= handleWidth)
         cell = edgeCell(view, event, 'right');
